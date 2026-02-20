@@ -4,12 +4,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <title>Najdi nová spojení</title>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}
+(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '25624379000498281');
+fbq('track', 'PageView');
+</script>
+
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=25624379000498281&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #fafafa;
-  color: #111;
-  text-align: center;
+body{
+  font-family:Arial,sans-serif;
+  background:#fafafa;
+  color:#111;
+  text-align:center;
   margin:0;
   padding:0;
   display:flex;
@@ -18,66 +41,71 @@ body {
   height:100vh;
 }
 
-.container {
+.container{
   width:100%;
   max-width:420px;
   padding:20px;
 }
 
-h2 {
+h2{
   color:#ff3377;
-  font-size:2.6rem;
+  font-size:2.4rem;
   line-height:1.3;
-  margin-bottom:30px;
+  margin-bottom:25px;
 }
 
-p {
-  font-size:1.8rem;
+p{
+  font-size:1.5rem;
   color:#444;
 }
 
-button {
+button{
   width:100%;
   padding:22px;
-  font-size:1.8rem;
+  font-size:1.7rem;
   font-weight:bold;
   background:#ff3377;
   color:#fff;
   border:none;
   border-radius:40px;
-  margin-top:18px;
+  margin-top:16px;
 }
 
-.progress {
+.progress{
   width:100%;
   height:14px;
   background:#ddd;
   border-radius:8px;
-  margin-bottom:30px;
+  margin-bottom:20px;
   overflow:hidden;
 }
 
-.bar {
+.bar{
   height:14px;
   width:0%;
   background:#ff3377;
   transition:0.4s;
 }
 
-.step { display:none; }
-.active { display:block; }
+.step{display:none;}
+.active{display:block;}
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
 <div class="progress"><div class="bar" id="bar"></div></div>
 
+<p style="font-size:1.2rem;color:#666;margin-bottom:20px;">
+Seznamovací platforma pro nové kontakty v Česku
+</p>
+
 <div id="step1" class="step active">
   <h2>Jsi starší 18 let?</h2>
-  <button onclick="nextStep(2)">Ano</button>
-  <button onclick="nextStep(2)">Ne</button>
+  <button onclick="nextStep(2)">Pokračovat</button>
+  <button onclick="nextStep(2)">Další</button>
 </div>
 
 <div id="step2" class="step">
@@ -94,7 +122,9 @@ button {
 <div id="step4" class="step">
   <h2>🔥 Našli jsme <span id="finalCount">5</span> aktivních členů!</h2>
   <p>Klikni níže a podívej se na profily:</p>
-  <a id="ctaBtn" href="#"><button>ZOBRAZIT TEĎ</button></a>
+  <a id="ctaBtn" href="#" onclick="fbq('track','Lead');">
+    <button>ZOBRAZIT TEĎ</button>
+  </a>
 </div>
 
 </div>
@@ -107,31 +137,35 @@ function nextStep(step){
   document.getElementById("step"+currentStep).classList.remove("active");
   currentStep = step;
   document.getElementById("step"+currentStep).classList.add("active");
-  document.getElementById("bar").style.width = (step*25) + "%";
+  document.getElementById("bar").style.width = (step*25)+"%";
 
-  if(step === 3){
+  if(step===3){
     setTimeout(function(){
+
+      fbq('track','ViewContent');
+
       document.getElementById("step3").classList.remove("active");
       document.getElementById("step4").classList.add("active");
-      document.getElementById("bar").style.width = "100%";
-      document.getElementById("finalCount").innerText = finalNumber;
-    }, 1800);
+      document.getElementById("bar").style.width="100%";
+      document.getElementById("finalCount").innerText=finalNumber;
+
+    },2500);
   }
 }
 
-// Передача subID
-const params = new URLSearchParams(window.location.search);
-const sub1 = params.get('sub1')||'';
-const sub2 = params.get('sub2')||'';
-const sub3 = params.get('sub3')||'';
-const sub4 = params.get('sub4')||'';
+// tracking params
+const params=new URLSearchParams(window.location.search);
+const sub1=params.get('sub1')||'';
+const sub2=params.get('sub2')||'';
+const sub3=params.get('sub3')||'';
+const sub4=params.get('sub4')||'';
 
-document.getElementById("ctaBtn").href = 
+document.getElementById("ctaBtn").href=
 "https://t.datsk11.com/402613/5528?aff_sub5=SF_006OG000004lmDN"
-+ "&aff_sub=" + sub1
-+ "&aff_sub2=" + sub2
-+ "&aff_sub3=" + sub3
-+ "&aff_sub4=" + sub4;
++"&aff_sub="+sub1
++"&aff_sub2="+sub2
++"&aff_sub3="+sub3
++"&aff_sub4="+sub4;
 </script>
 
 </body>
