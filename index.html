@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Najdi nová spojení</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #fafafa;
+  color: #111;
+  text-align: center;
+  margin:0;
+  padding:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.container {
+  width:100%;
+  max-width:420px;
+  padding:20px;
+}
+
+h2 {
+  color:#ff3377;
+  font-size:2.6rem;
+  line-height:1.3;
+  margin-bottom:30px;
+}
+
+p {
+  font-size:1.8rem;
+  color:#444;
+}
+
+button {
+  width:100%;
+  padding:22px;
+  font-size:1.8rem;
+  font-weight:bold;
+  background:#ff3377;
+  color:#fff;
+  border:none;
+  border-radius:40px;
+  margin-top:18px;
+}
+
+.progress {
+  width:100%;
+  height:14px;
+  background:#ddd;
+  border-radius:8px;
+  margin-bottom:30px;
+  overflow:hidden;
+}
+
+.bar {
+  height:14px;
+  width:0%;
+  background:#ff3377;
+  transition:0.4s;
+}
+
+.step { display:none; }
+.active { display:block; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div id="step1" class="step active">
+  <h2>Jsi starší 18 let?</h2>
+  <button onclick="nextStep(2)">Ano</button>
+  <button onclick="nextStep(2)">Ne</button>
+</div>
+
+<div id="step2" class="step">
+  <h2>Co hledáš?</h2>
+  <button onclick="nextStep(3)">Nové známosti</button>
+  <button onclick="nextStep(3)">Zábava a flirt</button>
+</div>
+
+<div id="step3" class="step">
+  <h2>Skenujeme dostupné profily...</h2>
+  <p>Chvíli vydržte...</p>
+</div>
+
+<div id="step4" class="step">
+  <h2>🔥 Našli jsme <span id="finalCount">5</span> aktivních členů!</h2>
+  <p>Klikni níže a podívej se na profily:</p>
+  <a id="ctaBtn" href="#"><button>ZOBRAZIT TEĎ</button></a>
+</div>
+
+</div>
+
+<script>
+let currentStep = 1;
+const finalNumber = Math.floor(Math.random()*6)+4;
+
+function nextStep(step){
+  document.getElementById("step"+currentStep).classList.remove("active");
+  currentStep = step;
+  document.getElementById("step"+currentStep).classList.add("active");
+  document.getElementById("bar").style.width = (step*25) + "%";
+
+  if(step === 3){
+    setTimeout(function(){
+      document.getElementById("step3").classList.remove("active");
+      document.getElementById("step4").classList.add("active");
+      document.getElementById("bar").style.width = "100%";
+      document.getElementById("finalCount").innerText = finalNumber;
+    }, 1800);
+  }
+}
+
+// Передача subID
+const params = new URLSearchParams(window.location.search);
+const sub1 = params.get('sub1')||'';
+const sub2 = params.get('sub2')||'';
+const sub3 = params.get('sub3')||'';
+const sub4 = params.get('sub4')||'';
+
+document.getElementById("ctaBtn").href = 
+"https://t.datsk11.com/402613/5528?aff_sub5=SF_006OG000004lmDN"
++ "&aff_sub=" + sub1
++ "&aff_sub2=" + sub2
++ "&aff_sub3=" + sub3
++ "&aff_sub4=" + sub4;
+</script>
+
+</body>
+</html>
