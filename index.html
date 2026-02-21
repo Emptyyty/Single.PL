@@ -1,172 +1,248 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
-<title>Najdi nová spojení</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Find new connections</title>
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}
-(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}
+  (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-fbq('init', '25624379000498281');
-fbq('track', 'PageView');
-</script>
+  fbq('init', '25624379000498281');
+  fbq('track', 'PageView');
+  </script>
 
-<noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=25624379000498281&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Meta Pixel Code -->
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=25624379000498281&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
 
-<style>
-body{
-  font-family:Arial,sans-serif;
-  background:#fafafa;
-  color:#111;
-  text-align:center;
-  margin:0;
-  padding:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
+  <style>
+    :root{
+      --accent:#ff3377;
+      --bg:#fafafa;
+      --text:#111;
+      --muted:#666;
+      --muted2:#444;
+      --card:#ffffff;
+      --border:#e9e9e9;
+    }
 
-.container{
-  width:100%;
-  max-width:420px;
-  padding:20px;
-}
+    body{
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-h2{
-  color:#ff3377;
-  font-size:2.4rem;
-  line-height:1.3;
-  margin-bottom:25px;
-}
+    .container{
+      width: 100%;
+      max-width: 420px;
+      padding: 18px;
+    }
 
-p{
-  font-size:1.5rem;
-  color:#444;
-}
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
 
-button{
-  width:100%;
-  padding:22px;
-  font-size:1.7rem;
-  font-weight:bold;
-  background:#ff3377;
-  color:#fff;
-  border:none;
-  border-radius:40px;
-  margin-top:16px;
-}
+    h2{
+      color: var(--accent);
+      font-size: 2.0rem;
+      line-height: 1.25;
+      margin: 10px 0 14px;
+    }
 
-.progress{
-  width:100%;
-  height:14px;
-  background:#ddd;
-  border-radius:8px;
-  margin-bottom:20px;
-  overflow:hidden;
-}
+    p{
+      font-size: 1.15rem;
+      color: var(--muted2);
+      margin: 0 0 12px;
+    }
 
-.bar{
-  height:14px;
-  width:0%;
-  background:#ff3377;
-  transition:0.4s;
-}
+    .topline{
+      font-size: 1.0rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
 
-.step{display:none;}
-.active{display:block;}
-</style>
+    .trust{
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    button{
+      width: 100%;
+      padding: 18px 18px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 40px;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+
+    button.secondary{
+      background: #fff;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .progress{
+      width: 100%;
+      height: 12px;
+      background: #ddd;
+      border-radius: 8px;
+      margin: 0 0 14px;
+      overflow: hidden;
+    }
+
+    .bar{
+      height: 12px;
+      width: 0%;
+      background: var(--accent);
+      transition: 0.35s ease;
+    }
+
+    .step{ display:none; }
+    .active{ display:block; }
+
+    .small{
+      font-size: 1.0rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* slightly bigger on desktop */
+    @media (min-width: 768px){
+      h2{ font-size: 2.2rem; }
+      button{ font-size: 1.25rem; padding: 20px; }
+      p{ font-size: 1.2rem; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="container">
+    <div class="progress"><div class="bar" id="bar"></div></div>
 
-<div class="container">
+    <div class="card">
 
-<div class="progress"><div class="bar" id="bar"></div></div>
+      <div class="topline">
+        A platform for meeting new people and making real connections
+      </div>
 
-<p style="font-size:1.2rem;color:#666;margin-bottom:20px;">
-Seznamovací platforma pro nové kontakty v Česku
-</p>
+      <div id="step1" class="step active">
+        <h2>Are you 18 or older?</h2>
+        <button onclick="nextStep(2, 'yes18')">Yes</button>
+        <button class="secondary" onclick="showNoAccess()">No</button>
+        <div class="trust">No spam • Free signup • Safe community</div>
+      </div>
 
-<div id="step1" class="step active">
-  <h2>Jsi starší 18 let?</h2>
-  <button onclick="nextStep(2)">Pokračovat</button>
-  <button onclick="nextStep(2)">Další</button>
-</div>
+      <div id="step2" class="step">
+        <h2>What are you looking for?</h2>
+        <button onclick="nextStep(3, 'meet')">New connections</button>
+        <button class="secondary" onclick="nextStep(3, 'flirt')">Chat & flirt</button>
+        <div class="trust">Quick check • Takes less than 10 seconds</div>
+      </div>
 
-<div id="step2" class="step">
-  <h2>Co hledáš?</h2>
-  <button onclick="nextStep(3)">Nové známosti</button>
-  <button onclick="nextStep(3)">Zábava a flirt</button>
-</div>
+      <div id="step3" class="step">
+        <h2>Scanning available profiles…</h2>
+        <p>Please wait a moment.</p>
+        <div class="small">Matching your preferences…</div>
+      </div>
 
-<div id="step3" class="step">
-  <h2>Skenujeme dostupné profily...</h2>
-  <p>Chvíli vydržte...</p>
-</div>
+      <div id="step4" class="step">
+        <h2>🔥 We found <span id="finalCount">5</span> active members</h2>
+        <p>Tap below to view profiles:</p>
+        <a id="ctaBtn" href="#" onclick="fbq('track','Lead');">
+          <button>VIEW NOW</button>
+        </a>
+        <div class="trust">Private • Fast • No spam</div>
+      </div>
 
-<div id="step4" class="step">
-  <h2>🔥 Našli jsme <span id="finalCount">5</span> aktivních členů!</h2>
-  <p>Klikni níže a podívej se na profily:</p>
-  <a id="ctaBtn" href="#" onclick="fbq('track','Lead');">
-    <button>ZOBRAZIT TEĎ</button>
-  </a>
-</div>
+      <div id="stepNo" class="step">
+        <h2>Sorry</h2>
+        <p>You must be 18+ to continue.</p>
+      </div>
 
-</div>
+    </div>
+  </div>
 
-<script>
-let currentStep = 1;
-const finalNumber = Math.floor(Math.random()*6)+4;
+  <script>
+    let currentStep = 1;
+    const finalNumber = Math.floor(Math.random() * 6) + 4;
 
-function nextStep(step){
-  document.getElementById("step"+currentStep).classList.remove("active");
-  currentStep = step;
-  document.getElementById("step"+currentStep).classList.add("active");
-  document.getElementById("bar").style.width = (step*25)+"%";
+    function setBar(step){
+      // 1..4 -> 25..100
+      document.getElementById("bar").style.width = (step * 25) + "%";
+    }
 
-  if(step===3){
-    setTimeout(function(){
+    function nextStep(step, action){
+      document.getElementById("step" + currentStep).classList.remove("active");
+      currentStep = step;
+      document.getElementById("step" + currentStep).classList.add("active");
+      setBar(step);
 
-      fbq('track','ViewContent');
+      // optional: track button choices as custom events (safe)
+      try{
+        if(action){ fbq('trackCustom', 'PrelandStep', { step: step, action: action }); }
+      }catch(e){}
 
-      document.getElementById("step3").classList.remove("active");
-      document.getElementById("step4").classList.add("active");
-      document.getElementById("bar").style.width="100%";
-      document.getElementById("finalCount").innerText=finalNumber;
+      if(step === 3){
+        setTimeout(function(){
+          fbq('track','ViewContent');
 
-    },2500);
-  }
-}
+          document.getElementById("step3").classList.remove("active");
+          document.getElementById("step4").classList.add("active");
+          setBar(4);
+          document.getElementById("finalCount").innerText = finalNumber;
+        }, 2200);
+      }
+    }
 
-// tracking params
-const params=new URLSearchParams(window.location.search);
-const sub1=params.get('sub1')||'';
-const sub2=params.get('sub2')||'';
-const sub3=params.get('sub3')||'';
-const sub4=params.get('sub4')||'';
+    function showNoAccess(){
+      document.getElementById("step" + currentStep).classList.remove("active");
+      currentStep = 0;
+      document.getElementById("stepNo").classList.add("active");
+      document.getElementById("bar").style.width = "25%";
+      try{ fbq('trackCustom', 'PrelandBlocked', { reason: 'under18' }); }catch(e){}
+    }
 
-document.getElementById("ctaBtn").href=
-"https://t.datsk11.com/402613/5528?aff_sub5=SF_006OG000004lmDN"
-+"&aff_sub="+sub1
-+"&aff_sub2="+sub2
-+"&aff_sub3="+sub3
-+"&aff_sub4="+sub4;
-</script>
+    // tracking params
+    const params = new URLSearchParams(window.location.search);
+    const sub1 = params.get('sub1') || '';
+    const sub2 = params.get('sub2') || '';
+    const sub3 = params.get('sub3') || '';
+    const sub4 = params.get('sub4') || '';
 
+    document.getElementById("ctaBtn").href =
+      "https://t.datsk11.com/402613/5528?aff_sub5=SF_006OG000004lmDN"
+      + "&aff_sub="  + encodeURIComponent(sub1)
+      + "&aff_sub2=" + encodeURIComponent(sub2)
+      + "&aff_sub3=" + encodeURIComponent(sub3)
+      + "&aff_sub4=" + encodeURIComponent(sub4);
+  </script>
 </body>
 </html>
